@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гадание Таро - Расклады на картах онлайн</title>
+<style>
+    img {
+    width: 200px; /* Задаем фиксированную ширину для изображений */
+    height: 200px; /* Задаем фиксированную высоту для изображений */
+}
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-image: url('https://psv4.userapi.com/c235031/u344270055/docs/d56/a5278cdc085b/snapedit_1711805821521.png?extra=Y84V48irV9lBMG6TnQ3Y5qoHUglo5iwYbt5WLyVKYtEtXaKDE-6j7EyyZN3CqejOp57gDHeYz6eoXt0tQhZIeaGoN_9E_sfQTX7I609yw9Nz3vrmcKoZzcfeGuCKkeqZ_TvvKSrQ0noAF_X_3UjBIBo4'); /* Путь к вашей фоновой картинке */
+    background-size: cover;
+    background-attachment: fixed;
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    }ЩА
+    
+    button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; /* Применяем выбранный шрифт */
+    font-size: 16px;
+}
+
+    .main-menu, .card-container, .yes-no-page {
+        margin-top: 50px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <button onclick="changeBackground()">Изменить фон</button>
+<div class="main-menu" style="display: block;">
+    <h1>Гадание Таро - Расклады на картах онлайн</h1>
+    <button onclick="showDailyCard()">Карта дня</button>
+    <button onclick="showYesNoPage()">Да или Нет</button>
+</div>
+
+<div class="card-container">
+    <img id="cardImage" src="" alt="Card Image">
+    <h2 id="cardTitle"></h2>
+    <p id="cardDescription"></p>
+    <button onclick="backToMainMenu()">Вернуться в главное меню</button>
+</div>
+
+<div class="yes-no-page" style="text-align: center;">
+    <p>Задай вопрос, на который можно ответить "ДА" или "НЕТ" и нажми кнопку ниже</p>
+    <button onclick="showYesNoCard()">Получить ответ</button>
+    <img id="yesNoCardImage" src="https://trikky.ru/wp-content/blogs.dir/1/files/2013/03/112.jpg" alt="Yes No Card Image" style="display: block; margin: 0 auto;">
+    <h2 id="yesNoCardTitle"></h2>
+    <p id="yesNoCardDescription"></p>
+    <button onclick="backToMainMenu()">Вернуться в главное меню</button>
+</div>
+
+<script>
+    function changeBackground() {
+    const body = document.querySelector('body');
+    const backgroundImage1 = 'url("https://psv4.userapi.com/c235031/u344270055/docs/d37/7a661d1e087c/snapedit_1711805668906.png?extra=C8vppsFgR0RpQdbwxHZnY7FZqP_zvuZsO9o6Nnj5xPLuvskskqMM5SggC1H3lqOXg-G9Vy2i-Hp-Szw6dpV05wunrsBYjTXJ51g_NVdZsX3ItE4VviGuauCvEe5Yf8SOyYkxzc37xpa0ebZaMxLYmywp")'; // Путь к первой фоновой картинке
+    const backgroundImage2 = 'url("https://psv4.userapi.com/c235031/u344270055/docs/d56/a5278cdc085b/snapedit_1711805821521.png?extra=Y84V48irV9lBMG6TnQ3Y5qoHUglo5iwYbt5WLyVKYtEtXaKDE-6j7EyyZN3CqejOp57gDHeYz6eoXt0tQhZIeaGoN_9E_sfQTX7I609yw9Nz3vrmcKoZzcfeGuCKkeqZ_TvvKSrQ0noAF_X_3UjBIBo4")'; // Путь ко второй фоновой картинке
+    
+    // Проверяем текущий фон и меняем на другую картинку
+    if (body.style.backgroundImage === backgroundImage1) {
+        body.style.backgroundImage = backgroundImage2;
+    } else {
+        body.style.backgroundImage = backgroundImage1;
+    }
+}
+    const cards = [
+        { title: "Карта 1", description: "Описание карты 1", image: "https://thumbs.dreamstime.com/z/%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%82%D0%B0%D1%80%D0%BE-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B5-%D1%82%D0%B0%D0%B9%D0%BD%D1%8B-%D0%BB%D1%8E%D0%B1%D0%B8%D1%82%D0%B5%D0%BB%D0%B8-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D1%80%D1%83%D0%BA%D0%B8-%D0%B2%D1%8B%D1%87%D0%B5%D1%80%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9-168802607.jpg" },
+        { title: "Карта 2", description: "Описание карты 2", image: "https://thumbs.dreamstime.com/z/%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%82%D0%B0%D1%80%D0%BE-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B5-%D1%82%D0%B0%D0%B9%D0%BD%D1%8B-%D0%BC%D0%B8%D1%80-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D1%80%D1%83%D0%BA%D0%B8-%D0%B2%D1%8B%D1%87%D0%B5%D1%80%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9-168802569.jpg" },
+        { title: "Карта 3", description: "Описание карты 3", image: "https://thumbs.dreamstime.com/b/%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%82%D0%B0%D1%80%D0%BE-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B5-%D1%82%D0%B0%D0%B9%D0%BD%D1%8B-%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D1%80%D1%83%D0%BA%D0%B8-%D0%B2%D1%8B%D1%87%D0%B5%D1%80%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9-168802477.jpg" },
+        { title: "Карта 4", description: "Описание карты 4", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7RkbIP3HQuUgDzZptjkxAeTN26bsrVMjX97pq8_rVX_iiFrtGo_BRsfFOvLEZq4BoVmo&usqp=CAU" },
+        { title: "Карта 5", description: "Описание карты 5", image: "https://thumbs.dreamstime.com/z/%D0%BA%D0%B0%D1%80%D1%82%D1%8B-%D1%82%D0%B0%D1%80%D0%BE-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B5-%D1%82%D0%B0%D0%B9%D0%BD%D1%8B-%D0%BB%D1%83%D0%BD%D0%B0-%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D1%80%D1%83%D0%BA%D0%B8-%D0%B2%D1%8B%D1%87%D0%B5%D1%80%D1%87%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9-168564642.jpg" }
+    ];
+
+    function showCard(card) {
+        const cardContainer = document.querySelector('.card-container');
+        cardContainer.style.display = 'block';
+        document.getElementById('cardImage').src = card.image;
+        document.getElementById('cardTitle').textContent = card.title;
+        document.getElementById('cardDescription').textContent = card.description;
+    }
+
+    function showDailyCard() {
+        const randomCard = cards[Math.floor(Math.random() * cards.length)];
+        showCard(randomCard);
+    }
+
+    function showYesNoPage() {
+        document.querySelector('.main-menu').style.display = 'none';
+        document.querySelector('.yes-no-page').style.display = 'block';
+    }
+
+    function showYesNoCard() {
+        const yesNoCard = cards[Math.floor(Math.random() * cards.length)];
+        const yesNoCardImage = document.getElementById('yesNoCardImage');
+        const yesNoCardTitle = document.getElementById('yesNoCardTitle');
+        const yesNoCardDescription = document.getElementById('yesNoCardDescription');
+
+        yesNoCardImage.src = yesNoCard.image;
+        yesNoCardTitle.textContent = yesNoCard.title;
+        yesNoCardDescription.textContent = yesNoCard.description;
+    }
+
+    function backToMainMenu() {
+        document.querySelector('.card-container').style.display = 'none';
+        document.querySelector('.yes-no-page').style.display = 'none';
+        document.querySelector('.main-menu').style.display = 'block';
+    }
+</script>
+</body>
+</html>
